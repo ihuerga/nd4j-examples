@@ -11,10 +11,10 @@ public class MatrixOperationExample {
 
     public static void main(String[] args) {
 
-        INDArray nd = Nd4j.create(new double[]{1,2},new int[]{2}); //vector as row
-        INDArray nd2 = Nd4j.create(new double[]{3,4},new int[]{2, 1}); //vector as column
-        INDArray nd3 = Nd4j.create(new double[]{1,3,2,4},new int[]{2,2}); //elements arranged column major
-        INDArray nd4 = Nd4j.create(new double[]{3,4,5,6},new int[]{2, 2});
+        INDArray nd = Nd4j.create(new float[]{1,2},new int[]{2}); //vector as row
+        INDArray nd2 = Nd4j.create(new float[]{3,4},new int[]{2, 1}); //vector as column
+        INDArray nd3 = Nd4j.create(new float[]{1,3,2,4},new int[]{2,2}); //elements arranged column major
+        INDArray nd4 = Nd4j.create(new float[]{3,4,5,6},new int[]{2, 2});
 
         // Show initial matrices
 
@@ -51,9 +51,9 @@ public class MatrixOperationExample {
         ndv = nd2.mmul(nd);
         System.out.println(ndv);
 
-        // let's see what happens if you double nd
+        // let's see what happens if you float nd
 
-        INDArray nd5 = Nd4j.create(new double[]{1,1,2,2},new int[]{2,2}); //doubling nd
+        INDArray nd5 = Nd4j.create(new float[]{1,1,2,2},new int[]{2,2}); //doubling nd
 
         ndv = nd2.mmul(nd5);
         System.out.println(ndv); //same thing!
