@@ -1,5 +1,6 @@
 package org.nd4j.examples;
 
+import org.nd4j.linalg.api.buffer.DataBuffer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
@@ -10,51 +11,52 @@ import org.nd4j.linalg.factory.Nd4j;
 public class ElementWiseOperationExample {
 
     public static void main(String[] args) {
-
-        INDArray nd = Nd4j.create(new double[]{1,2,3,4},new int[]{2,2});
-        INDArray nd2 = Nd4j.create(new double[]{5,6},new int[]{2,1}); //vector as column
-        INDArray nd3 = Nd4j.create(new double[]{5,6},new int[]{2}); //vegctor as row
-        INDArray nd4 = Nd4j.create(new double[]{5,6,7,8},new int[]{2,2});
-
-        // Show initial matrices
-
-        System.out.println(nd);
-        System.out.println(nd2);
-        System.out.println(nd3);
-        System.out.println(nd4);
+        Nd4j.dtype = DataBuffer.DOUBLE;
+        INDArray nd1 = Nd4j.create(new double[]{1,2,3,4,5,6},new int[]{2,3});
+        System.out.println("nd1:\n"+nd1);
 
         //create nd-array variable ndv to be able to print result of nondestructive operations. add scalar to matrix and assign ndv the sum.
 
-        INDArray ndv = nd.add(1);
+        INDArray ndv = nd1.add(1);
 
-        System.out.println(ndv);
+        System.out.println("nd1.add(1):\n"+ndv);
 
-        ndv = nd.mul(5);
-        System.out.println(ndv);
+        ndv = nd1.mul(5);
+        System.out.println("nd1.mul(5):\n"+ndv);
 
-        ndv = nd.sub(3);
-        System.out.println(ndv);
+        ndv = nd1.sub(3);
+        System.out.println("nd1.sub(3):\n"+ndv);
 
-        ndv = nd.div(2);
-        System.out.println(ndv);
+        ndv = nd1.div(2);
+        System.out.println("nd1.div(2):\n"+ndv);
 
         //add column vector to matrix
 
-        ndv = nd.addColumnVector(nd2);
+        INDArray nd2 = Nd4j.create(new double[]{10,20},new int[]{2,1}); //vector as column
+        System.out.println("nd2:\n"+nd2);
 
-        System.out.println(ndv);
+        ndv = nd1.addColumnVector(nd2);
+
+        System.out.println("nd1.addColumnVector(nd2):\n"+ndv);
 
         // add row vector to matrix
 
-        ndv = nd.addRowVector(nd3);
+        INDArray nd3 = Nd4j.create(new double[]{30,40,50},new int[]{3}); //vegctor as row
+        System.out.println("nd3:\n"+nd3);
 
-        System.out.println(ndv);
+        ndv = nd1.addRowVector(nd3);
+
+        System.out.println("nd1.addRowVector(nd3):\n"+ndv);
 
         //multiply two matrices of equal dimensions elementwise.
 
-        ndv = nd.mul(nd4);
+        INDArray nd4 = Nd4j.create(new double[]{1,2,1,2,1,2},new int[]{2,3});
+        System.out.println("nd4:\n"+nd4);
 
-        System.out.println(ndv);
+        ndv = nd1.mul(nd4);
+
+        System.out.println("nd1.mul(nd4):\n"+ndv);
+
 
     }
 
